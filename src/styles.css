@@ -143,7 +143,7 @@
 
 .workspace-header {
   padding: 2rem;
-  box-shadow: 0 0 1px 1px #1e2d2f66;
+  box-shadow: 2px 2px 1px 0px #1e2d2f66;
 
   h2 {
     line-height: 1;
@@ -179,13 +179,13 @@
 
   img {
     cursor: pointer;
-    width: 28px;
+    width: 32px;
   }
 
   P {
     padding: 0.4rem;
     font-size: 1.2rem;
-    border-bottom: 1px solid #1e2d2f;
+    border-bottom: 1px solid #1e2d2f66;
   }
 
   button {
@@ -210,7 +210,7 @@
   display: grid;
   grid-template-columns: auto 1fr;
   column-gap: 2rem;
-  margin-left: 40px;
+  margin-left: 42px;
 
   p {
     font-size: 1.1rem;
