@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="./assets/logo-icon.png" />
+    <link rel="icon" href="./assets/favicon.png" />
     <title>Listify</title>
   </head>
   <body>
@@ -20,26 +20,31 @@
         <div class="side-middle">
           <div class="link-container">
             <div class="fast-link">
-              <img src="./assets/upcoming.png" alt="" />
-              <h3>Upcoming</h3>
+              <img src="./assets/upcoming.png" alt="Sort upcoming items" />
+              <button>Upcoming</button>
             </div>
             <div class="fast-link">
-              <img src="./assets/complete-icon.png" alt="" />
-              <h3>Complete</h3>
+              <img src="./assets/upcoming.png" alt="Sort upcoming items" />
+              <button>Pending</button>
+            </div>
+
+            <div class="fast-link">
+              <img
+                src="./assets/complete-icon.png"
+                alt="Sort completed items"
+              />
+              <button>Complete</button>
             </div>
             <div class="fast-link">
-              <img src="./assets/pending-icon.png" alt="" />
-              <h3>Pending</h3>
-            </div>
-            <div class="fast-link">
-              <img src="./assets/urgent-icon.png" alt="" />
-              <h3>Urgent</h3>
+              <img src="./assets/urgent-icon.png" alt="Sort urgent items" />
+              <button>Urgent</button>
             </div>
           </div>
           <div class="lists-container">
             <div class="side-list">
-              <img src="./assets/sidebar-list-img.png" alt="" />
-              <h3>My Project</h3>
+              <img src="./assets/sidebar-list-img.png" alt="Todo list icon" />
+              <button>Project Name</button>
+              <button class="side-list-remove">X</button>
             </div>
           </div>
         </div>
@@ -48,8 +53,48 @@
         </div>
       </div>
       <div class="workspace-container" id="workspace">
-        <div class="workspace-header"><h2>Project Name</h2></div>
-        <div class="workspace-bottom"></div>
+        <div class="workspace-header">
+          <h2>Project Name</h2>
+        </div>
+        <div class="todo-container">
+          <div class="todo-item">
+            <div class="todo-top-row">
+              <div class="todo-check-icon">
+                <img src="./assets/item-pending.png" alt="" />
+              </div>
+              <p>Item 01</p>
+              <button>Edit</button>
+              <button>Remove</button>
+            </div>
+            <div class="todo-bottom-row">
+              <div class="todo-due-date">
+                <img src="./assets/calendar.png" alt="" />
+                <p>06/21/2026</p>
+              </div>
+              <div class="todo-priority">
+                <img src="./assets/todo-alert.png" alt="" />
+                <p>High</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer>
+          <div class="add-item-btn">
+            <button>+ Add Item</button>
+          </div>
+          <div class="credits">
+            <p>
+              Created by
+              <a
+                href="https://github.com/Neitodesu"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Neitodesu</a
+              >
+            </p>
+            <img src="./assets/github.png" alt="" />
+          </div>
+        </footer>
       </div>
     </main>
   </body>
