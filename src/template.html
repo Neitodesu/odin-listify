@@ -24,10 +24,9 @@
               <button>Upcoming</button>
             </div>
             <div class="fast-link">
-              <img src="./assets/upcoming.png" alt="Sort upcoming items" />
+              <img src="./assets/pending-icon.png" alt="Sort upcoming items" />
               <button>Pending</button>
             </div>
-
             <div class="fast-link">
               <img
                 src="./assets/complete-icon.png"
@@ -52,6 +51,39 @@
           <button><span>+</span>New List</button>
         </div>
       </div>
+      <dialog id="newTodoModal">
+        <div class="todo-modal-backdrop">
+          <div class="todo-modal-container">
+            <div class="todo-modal-top">
+              <h3>New Item</h3>
+              <div class="todo-modal-input">
+                <label for="newTodoInput">
+                  <img src="./assets/pen-edit.png" alt="" />
+                </label>
+                <input type="text" id="newTodoInput" placeholder="Todo..." />
+              </div>
+            </div>
+            <div class="todo-modal-details">
+              <div class="date-details">
+                <label for="datePicker">Due Date:</label>
+                <input type="date" id="datePicker" />
+              </div>
+              <div class="priority-details">
+                <label for="priorityPicker">Priority:</label>
+                <select>
+                  <option value="low">Low</option>
+                  <option value="med">Med</option>
+                  <option value="high">High</option>
+                </select>
+              </div>
+            </div>
+            <div class="todo-modal-buttons">
+              <button>Create</button>
+              <button>Cancel</button>
+            </div>
+          </div>
+        </div>
+      </dialog>
       <div class="workspace-container" id="workspace">
         <div class="workspace-header">
           <h2>Project Name</h2>
@@ -79,7 +111,7 @@
           </div>
         </div>
         <footer>
-          <div class="add-item-btn">
+          <div class="add-item-btn" id="addItemBtn">
             <button>+ Add Item</button>
           </div>
           <div class="credits">
