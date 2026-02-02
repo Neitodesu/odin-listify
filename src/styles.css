@@ -68,6 +68,7 @@
         color: var(--white);
         font-weight: 700;
         cursor: pointer;
+        transition: all 0.06s ease-out;
 
         &:hover {
           color: #f6ae2d;
@@ -96,6 +97,7 @@
         font-size: 1.4rem;
         font-weight: 700;
         cursor: pointer;
+        transition: all 0.06s ease-out;
 
         &:hover {
           color: #f6ae2d;
@@ -124,6 +126,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
+    transition: all 0.06s ease-out;
 
     &:hover {
       color: #f6ae2d;
@@ -149,7 +152,6 @@
     line-height: 1;
     font-weight: 800;
     font-size: 3rem;
-    text-shadow: 1px 1px 1px #1e2d2f;
     color: #33658a;
   }
 }
@@ -196,9 +198,8 @@
     padding: 0.2rem 1rem;
     border: transparent;
     border-radius: 0.4rem;
-    box-shadow: 2px 2px 1px 0px #1e2d2f66;
     cursor: pointer;
-    transition: all 0.05s ease-out;
+    transition: all 0.06s ease-out;
 
     &:hover {
       color: #f6ae2d;
@@ -250,9 +251,12 @@ footer {
     padding: 0.4rem 1rem;
     border-radius: 0.4rem;
     box-shadow: 2px 2px 1px 0px #1e2d2f66;
+    transition: all 0.06s ease-out;
 
     &:hover {
       color: #f6ae2d;
+      transform: translate(2px, 2px);
+      box-shadow: 0px 0px 1px 0px #1e2d2f66;
     }
   }
 
@@ -304,6 +308,7 @@ footer {
     background-color: #fbfaf8;
     border-radius: 0.4rem;
     text-align: center;
+    animation: modalSlideUp 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) forwards;
 
     .todo-modal-top {
       display: flex;
@@ -385,7 +390,6 @@ footer {
       padding: 0.2rem 1rem;
       border: transparent;
       border-radius: 0.4rem;
-      box-shadow: 2px 2px 1px 0px #1e2d2f66;
       cursor: pointer;
       transition: all 0.05s ease-out;
 
@@ -393,5 +397,93 @@ footer {
         color: #f6ae2d;
       }
     }
+  }
+}
+
+.project-modal {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #1f1f1f33;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .project-modal-container {
+    padding: 2rem;
+    width: 400px;
+    background-color: #fbfaf8;
+    border-radius: 0.4rem;
+    text-align: center;
+    animation: modalSlideUp 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) forwards;
+
+    h3 {
+      font-size: 2rem;
+      color: #33658a;
+      margin-bottom: 1rem;
+    }
+
+    .project-modal-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+
+      input {
+        position: relative;
+        color: #1e2d2f;
+        padding: 0.4rem;
+        border-radius: 0.4rem;
+        border: 2px solid transparent;
+
+        &:focus {
+          outline: none;
+          border: 2px solid #33658a;
+        }
+      }
+      img {
+        position: absolute;
+        left: 68px;
+        z-index: 1;
+        width: 20px;
+      }
+    }
+
+    .project-modal-bottom-row {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+
+      button {
+        background-color: #33658a;
+        color: var(--white);
+        font-size: 1.2rem;
+        font-weight: 700;
+        padding: 0.2rem 1rem;
+        border: transparent;
+        border-radius: 0.4rem;
+        cursor: pointer;
+        transition: all 0.05s ease-out;
+
+        &:hover {
+          color: #f6ae2d;
+        }
+      }
+    }
+  }
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
   }
 }

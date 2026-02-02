@@ -48,7 +48,7 @@
           </div>
         </div>
         <div class="side-bottom">
-          <button><span>+</span>New List</button>
+          <button id="newProjectBtn"><span>+</span>New List</button>
         </div>
       </div>
       <dialog id="newTodoModal">
@@ -60,7 +60,12 @@
                 <label for="newTodoInput">
                   <img src="./assets/pen-edit.png" alt="" />
                 </label>
-                <input type="text" id="newTodoInput" placeholder="Todo..." />
+                <input
+                  type="text"
+                  id="newTodoInput"
+                  required
+                  placeholder="Todo..."
+                />
               </div>
             </div>
             <div class="todo-modal-details">
@@ -78,8 +83,8 @@
               </div>
             </div>
             <div class="todo-modal-buttons">
-              <button>Create</button>
-              <button>Cancel</button>
+              <button id="modalCreateBtn">Create</button>
+              <button id="modalCloseBtn">Cancel</button>
             </div>
           </div>
         </div>
@@ -89,6 +94,7 @@
           <h2>Project Name</h2>
         </div>
         <div class="todo-container">
+          <!-- <template id="todoItemTemplate"> -->
           <div class="todo-item">
             <div class="todo-top-row">
               <div class="todo-check-icon">
@@ -109,6 +115,7 @@
               </div>
             </div>
           </div>
+          <!-- </template> -->
         </div>
         <footer>
           <div class="add-item-btn" id="addItemBtn">

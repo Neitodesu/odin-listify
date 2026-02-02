@@ -1,18 +1,10 @@
 import './styles.css';
+import { newTodoBtn, openModal } from './components/modal.js';
+import { newProjectBtn, openProjectModal } from './components/projectModal.js';
 
-const newTodoBtn = document.querySelector('#addItemBtn');
-const todoModal = document.querySelector('#newTodoModal');
-const todoModalBackdrop = document.querySelector('.todo-modal-backdrop');
-const todoModalDetails = document.querySelector('.todo-modal-container');
-
-todoModalDetails.addEventListener('click', (e) => {
-  e.stopPropagation();
+newProjectBtn.addEventListener('click', () => {
+  openProjectModal();
 });
-
 newTodoBtn.addEventListener('click', () => {
-  todoModal.showModal();
-});
-
-todoModalBackdrop.addEventListener('click', () => {
-  todoModal.close();
+  openModal();
 });
