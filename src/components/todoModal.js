@@ -15,7 +15,7 @@ const modalCloseBtn = document.querySelector('#modalCloseBtn');
 const resetModal = () => {
   newModalInput.value = '';
   dueDate.value = '';
-  priorityPicker.value = 'low';
+  priorityPicker.value = 'Low';
 
   todoModal.close();
 };
