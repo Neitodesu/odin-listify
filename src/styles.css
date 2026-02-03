@@ -320,17 +320,21 @@ footer {
         font-size: 2rem;
         color: #33658a;
         text-shadow: 1px 1px 1px #1e2d2f66;
+        margin-bottom: 1rem;
       }
 
       .todo-modal-input {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
 
         img {
+          position: absolute;
+          top: 8px;
+          left: 40px;
           width: 20px;
-          height: 100%;
         }
       }
 
@@ -424,6 +428,7 @@ footer {
       font-size: 2rem;
       color: #33658a;
       margin-bottom: 1rem;
+      text-shadow: 1px 1px 1px #1e2d2f66;
     }
 
     .project-modal-top-row {
@@ -485,5 +490,16 @@ footer {
   to {
     opacity: 1;
     transform: translateY(0px);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .app-container {
+    display: grid;
+    grid-template-columns: auto;
+  }
+  .side-bar-container {
+    position: absolute;
+    transform: translateX(-400px);
   }
 }

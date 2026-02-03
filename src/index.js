@@ -1,5 +1,6 @@
 import './styles.css';
-import { newTodoBtn, openModal } from './components/modal.js';
+import { format } from 'date-fns';
+import { newTodoBtn, openModal } from './components/todoModal.js';
 import { newProjectBtn, openProjectModal } from './components/projectModal.js';
 
 newProjectBtn.addEventListener('click', () => {
