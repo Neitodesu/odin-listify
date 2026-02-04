@@ -1,4 +1,5 @@
 import editIcon from '../assets/pen-edit.png';
+import { createProject } from './newProject.js';
 const newProjectBtn = document.querySelector('#newProjectBtn');
 const openProjectModal = () => {
   const backdrop = document.createElement('div');
@@ -37,6 +38,14 @@ const openProjectModal = () => {
   });
 
   backdrop.addEventListener('click', () => {
+    document.body.removeChild(backdrop);
+  });
+
+  createButton.addEventListener('click', () => {
+    if (input.value === '') {
+      return;
+    }
+    createProject(input.value);
     document.body.removeChild(backdrop);
   });
 
