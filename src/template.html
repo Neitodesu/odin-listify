@@ -40,11 +40,19 @@
             </div>
           </div>
           <div class="lists-container">
-            <div class="side-list">
-              <img src="./assets/sidebar-list-img.png" alt="Todo list icon" />
-              <button>Project Name</button>
-              <button class="side-list-remove">X</button>
-            </div>
+            <template class="side-list" id="sideListTemplate">
+              <div class="sidebar-project-card">
+                <div class="sidebar-left-container">
+                  <img
+                    id="sidebarListImg"
+                    src="./assets/sidebar-list-img.png"
+                    alt="Todo list icon"
+                  />
+                  <button id="sideListName"></button>
+                </div>
+                <button id="sideListRemove" class="side-list-remove"></button>
+              </div>
+            </template>
           </div>
         </div>
         <div class="side-bottom">

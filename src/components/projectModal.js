@@ -1,5 +1,5 @@
 import editIcon from '../assets/pen-edit.png';
-import { createProject } from './newProject.js';
+import { createProject, updateSideBar } from './newProject.js';
 const newProjectBtn = document.querySelector('#newProjectBtn');
 const openProjectModal = () => {
   const backdrop = document.createElement('div');

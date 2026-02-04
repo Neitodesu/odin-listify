@@ -81,11 +81,15 @@
     padding: 1rem;
     overflow: scroll;
 
-    .side-list {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+    .sidebar-project-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      margin-bottom: 2rem;
 
+      .sidebar-left-container {
+        display: flex;
+        gap: 1rem;
+      }
       img {
         width: 24px;
       }

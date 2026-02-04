@@ -1,4 +1,6 @@
 import { createTodoItem } from './todoItem.js';
+import { format, parseISO } from 'date-fns';
+
 const newTodoBtn = document.querySelector('#addItemBtn');
 const todoModal = document.querySelector('#newTodoModal');
 const todoModalBackdrop = document.querySelector('.todo-modal-backdrop');
@@ -28,7 +30,6 @@ todoModalBackdrop.addEventListener('click', () => {
 });
 
 modalCloseBtn.addEventListener('click', () => {
-  createTodoItem('Item 1', false, '02/23/2026', 'Med', false, 34692);
   resetModal();
 });
 
@@ -36,6 +37,24 @@ modalCreateBtn.addEventListener('click', () => {
   if (newModalInput.value === '' || dueDate.value === '') {
     return;
   }
+  const setDate = parseISO(dueDate.value);
+  const newDate = format(setDate, 'MM/dd/yyyy');
+  const todoId = crypto.randomUUID();
+  const isImportant = () => {
+    if (priorityPicker.value != 'High') {
+      return false;
+    } else {
+      return true;
+    }
+  };
+  createTodoItem(
+    newModalInput.value,
+    false,
+    newDate,
+    priorityPicker.value,
+    isImportant(),
+    todoId,
+  );
   resetModal();
 });
 
