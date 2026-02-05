@@ -146,6 +146,7 @@
   background-color: var(--white);
   display: grid;
   grid-template-rows: auto 1fr auto;
+  overflow: scroll;
 }
 
 .workspace-header {
@@ -177,6 +178,10 @@
   color: #1e2d2f;
 }
 
+.slideIn {
+  animation: todoSlideIn 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) forwards;
+}
+
 .todo-top-row {
   display: grid;
   grid-template-columns: auto 1fr auto auto;
@@ -192,6 +197,10 @@
     padding: 0.4rem;
     font-size: 1.2rem;
     border-bottom: 1px solid #1e2d2f66;
+  }
+  .complete {
+    text-decoration: line-through;
+    opacity: 0.8;
   }
 
   button {
@@ -497,13 +506,13 @@ footer {
   }
 }
 
-@media screen and (max-width: 1024px) {
-  .app-container {
-    display: grid;
-    grid-template-columns: auto;
+@keyframes todoSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(80px);
   }
-  .side-bar-container {
-    position: absolute;
-    transform: translateX(-400px);
+  to {
+    opacity: 1;
+    transform: translateX(0px);
   }
 }

@@ -21,6 +21,7 @@ class TodoItem {
 
 const createTodoItem = (text, checked, date, priority, isImportant, id) => {
   const newTodo = new TodoItem(text, checked, date, priority, isImportant, id);
+  newTodo.isNew = true;
   updateTodos(newTodo);
 };
 
@@ -28,8 +29,23 @@ const renderTodoItems = (todo) => {
   const clone = template.content.cloneNode(true);
   const card = clone.querySelector('.todo-item');
 
+  if (todo.isNew) {
+    card.classList.add('slideIn');
+
+    card.addEventListener(
+      'animationend',
+      () => {
+        todo.isNew = false;
+      },
+      { once: true },
+    );
+  }
+
   card.querySelector('#newTodoImg').src = todo.checked ? checked : unChecked;
   card.querySelector('#todoInputText').textContent = todo.text;
+  card.querySelector('#todoInputText').style.textDecoration = todo.checked
+    ? 'line-through'
+    : 'none';
   card.querySelector('#todoInputDate').textContent = todo.date;
   if (todo.priority === 'Low') {
     card.querySelector('#newTodoPriorImg').src = lowPriorImg;
@@ -42,6 +58,10 @@ const renderTodoItems = (todo) => {
   card.querySelector('#newTodoImg').addEventListener('click', () => {
     todo.checked = !todo.checked;
 
+    card.querySelector('#todoInputText').style.textDecoration = todo.checked
+      ? 'line-through'
+      : 'none';
+
     card.querySelector('#newTodoImg').src = todo.checked ? checked : unChecked;
   });
 
@@ -52,4 +72,13 @@ const renderTodoItems = (todo) => {
   container.appendChild(card);
 };
 
-export { createTodoItem, renderTodoItems };
+const defaultTodoDisplay = (text) => {
+  const div = document.createElement('div');
+  const p = document.createElement('p');
+  p.textContent = text;
+  div.appendChild(p);
+  const defaultBox = document.querySelector('.todo-container');
+  defaultBox.appendChild(div);
+};
+
+export { createTodoItem, renderTodoItems, defaultTodoDisplay };

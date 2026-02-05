@@ -1,5 +1,5 @@
 import projectImg from '../assets/sidebar-list-img.png';
-import { renderTodoItems } from './todoItem.js';
+import { defaultTodoDisplay, renderTodoItems } from './todoItem.js';
 const projectHeader = document.querySelector('.project-header');
 let projectList = [];
 let currentProject;
@@ -24,7 +24,6 @@ const createProject = (title) => {
   projectList.push(newProject);
   updateCurrentProject(newProject.id);
   updateSideBar(title, newProject.id);
-  console.log(projectList);
 };
 
 const renderProject = (title) => {
@@ -36,9 +35,13 @@ const renderTodos = () => {
     if (project.id == currentProject) {
       todoContainer.textContent = '';
 
-      project.todo.forEach((todo) => {
-        renderTodoItems(todo);
-      });
+      if (project.todo.length === 0) {
+        defaultTodoDisplay('Got an idea?');
+      } else {
+        project.todo.forEach((todo) => {
+          renderTodoItems(todo);
+        });
+      }
     }
   });
 };
@@ -50,28 +53,32 @@ const updateTodos = (obj) => {
     }
   });
   renderTodos();
-  console.log(projectList);
 };
 
 const removeTodoItem = (todo) => {
-  console.log(todo.id);
+  const project = projectList.find((project) => project.id === currentProject);
+  if (!project) return;
 
-  projectList.find((project) => {
-    project.todo = project.todo.filter((item) => item.id !== todo.id);
-  });
+  project.todo = project.todo.filter((item) => item.id !== todo.id);
   renderTodos();
-  console.log(projectList);
 };
 
 const updateCurrentProject = (id) => {
-  projectList.find((project) => {
-    if (project.id == id) {
-      currentProject = project.id;
-      renderProject(project.title);
-      renderTodos();
-      console.log(currentProject);
-    }
-  });
+  if (!id) {
+    currentProject = null;
+    renderProject('No projects found');
+    todoContainer.textContent = '';
+    defaultTodoDisplay('Create a new list to start adding todos!');
+    return;
+  }
+
+  const project = projectList.find((project) => project.id === id);
+
+  if (!project) return;
+
+  currentProject = id;
+  renderProject(project.title);
+  renderTodos();
 };
 
 const updateSideBar = (name, id) => {
@@ -96,6 +103,10 @@ const updateSideBar = (name, id) => {
 
 const removeProject = (id) => {
   projectList = projectList.filter((project) => project.id !== id);
+  if (currentProject === id) {
+    const nextProjectId = projectList.length ? projectList[0].id : null;
+    updateCurrentProject(nextProjectId);
+  }
 };
 
 export {
