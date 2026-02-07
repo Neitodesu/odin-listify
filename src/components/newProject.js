@@ -1,5 +1,7 @@
 import projectImg from '../assets/sidebar-list-img.png';
+import { format, parseISO } from 'date-fns';
 import { defaultTodoDisplay, renderTodoItems } from './todoItem.js';
+import { resetModal } from './todoModal.js';
 
 const projectHeader = document.querySelector('.project-header');
 const listContainer = document.querySelector('.lists-container');
@@ -12,6 +14,7 @@ const upcomingItemsBtn = document.querySelector('#upcomingItemsBtn');
 
 let projectList = [];
 let currentProject;
+let currentTodo;
 
 let upcomingItemsList = [
   {
@@ -98,6 +101,27 @@ const removeTodoItem = (todo) => {
 
   project.todo = project.todo.filter((item) => item.id !== todo.id);
   renderTodos(projectList);
+};
+
+const updateCurrentTodoId = (id) => {
+  currentTodo = id;
+};
+
+const updateTodoItem = (inputtext, date, priority) => {
+  const project = projectList.find((project) => project.id === currentProject);
+  const todoIndex = project.todo.findIndex((todo) => todo.id === currentTodo);
+
+  project.todo[todoIndex].text = inputtext;
+  const setDate = parseISO(date);
+  project.todo[todoIndex].date = format(setDate, 'MM/dd/yyyy');
+  project.todo[todoIndex].priority = priority;
+  if (priority === 'High') {
+    project.todo[todoIndex].isImportant = true;
+  } else {
+    project.todo[todoIndex].isImportant = false;
+  }
+  renderTodos(projectList);
+  resetModal();
 };
 
 const updateCurrentProject = (id) => {
@@ -209,4 +233,6 @@ export {
   updateTodos,
   removeTodoItem,
   projectHeader,
+  updateTodoItem,
+  updateCurrentTodoId,
 };

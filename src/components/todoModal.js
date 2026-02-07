@@ -1,5 +1,6 @@
 import { createTodoItem } from './todoItem.js';
 import { format, parseISO } from 'date-fns';
+import { updateTodoItem } from './newProject.js';
 
 const newTodoBtn = document.querySelector('#addItemBtn');
 const todoModal = document.querySelector('#newTodoModal');
@@ -37,6 +38,10 @@ modalCloseBtn.addEventListener('click', () => {
 });
 
 modalCreateBtn.addEventListener('click', () => {
+  if (modalCreateBtn.textContent === 'Update') {
+    updateTodoItem(newModalInput.value, dueDate.value, priorityPicker.value);
+    return;
+  }
   if (newModalInput.value === '' || dueDate.value === '') {
     return;
   }
@@ -61,4 +66,4 @@ modalCreateBtn.addEventListener('click', () => {
   resetModal();
 });
 
-export { openModal, newTodoBtn };
+export { openModal, newTodoBtn, resetModal };

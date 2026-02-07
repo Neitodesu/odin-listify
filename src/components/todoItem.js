@@ -3,7 +3,12 @@ import unChecked from '../assets/item-pending.png';
 import lowPriorImg from '../assets/low-prior.png';
 import medPriorImg from '../assets/med-prior.png';
 
-import { updateTodos, removeTodoItem } from './newProject.js';
+import {
+  updateTodos,
+  removeTodoItem,
+  updateCurrentTodoId,
+} from './newProject.js';
+import { openEditModal } from './dom.js';
 
 const template = document.querySelector('#todoItemTemplate');
 const container = document.querySelector('.todo-container');
@@ -28,6 +33,8 @@ const createTodoItem = (text, checked, date, priority, isImportant, id) => {
 const renderTodoItems = (todo) => {
   const clone = template.content.cloneNode(true);
   const card = clone.querySelector('.todo-item');
+
+  card.dataset.todoId = todo.id;
 
   if (todo.isNew) {
     card.classList.add('slideIn');
@@ -69,11 +76,12 @@ const renderTodoItems = (todo) => {
     removeTodoItem(todo);
   });
 
-  container.appendChild(card);
-};
+  card.querySelector('#newTodoEditBtn').addEventListener('click', () => {
+    updateCurrentTodoId(card.dataset.todoId);
+    openEditModal(todo);
+  });
 
-const editCurrentTodo = () => {
-  console.log('foo');
+  container.appendChild(card);
 };
 
 const defaultTodoDisplay = (id) => {
@@ -101,4 +109,4 @@ const defaultTodoDisplay = (id) => {
   defaultBox.appendChild(div);
 };
 
-export { createTodoItem, renderTodoItems, defaultTodoDisplay, editCurrentTodo };
+export { createTodoItem, renderTodoItems, defaultTodoDisplay };
