@@ -1,12 +1,49 @@
 import projectImg from '../assets/sidebar-list-img.png';
 import { defaultTodoDisplay, renderTodoItems } from './todoItem.js';
-const projectHeader = document.querySelector('.project-header');
-let projectList = [];
-let currentProject;
 
+const projectHeader = document.querySelector('.project-header');
 const listContainer = document.querySelector('.lists-container');
 const listTemplate = document.querySelector('#sideListTemplate');
 const todoContainer = document.querySelector('.todo-container');
+const completeItemsBtn = document.querySelector('#completeItemsBtn');
+const urgentItemsBtn = document.querySelector('#urgentItemsBtn');
+const pendingItemsBtn = document.querySelector('#pendingItemsBtn');
+const upcomingItemsBtn = document.querySelector('#upcomingItemsBtn');
+
+let projectList = [];
+let currentProject;
+
+let upcomingItemsList = [
+  {
+    title: 'Upcoming Items',
+    id: 0,
+    todo: [],
+  },
+];
+
+let pendingItemsList = [
+  {
+    title: 'Pending Items',
+    id: 1,
+    todo: [],
+  },
+];
+
+let completeItemsList = [
+  {
+    title: 'Complete Items',
+    id: 2,
+    todo: [],
+  },
+];
+
+let urgentItemsList = [
+  {
+    title: 'Urgent Items',
+    id: 3,
+    todo: [],
+  },
+];
 
 class Project {
   constructor(title, id, todo) {
@@ -30,13 +67,13 @@ const renderProject = (title) => {
   projectHeader.textContent = title;
 };
 
-const renderTodos = () => {
-  projectList.find((project) => {
+const renderTodos = (list) => {
+  list.find((project) => {
     if (project.id == currentProject) {
       todoContainer.textContent = '';
 
       if (project.todo.length === 0) {
-        defaultTodoDisplay('Got an idea?');
+        defaultTodoDisplay(currentProject);
       } else {
         project.todo.forEach((todo) => {
           renderTodoItems(todo);
@@ -52,7 +89,7 @@ const updateTodos = (obj) => {
       project.todo.push(obj);
     }
   });
-  renderTodos();
+  renderTodos(projectList);
 };
 
 const removeTodoItem = (todo) => {
@@ -60,7 +97,7 @@ const removeTodoItem = (todo) => {
   if (!project) return;
 
   project.todo = project.todo.filter((item) => item.id !== todo.id);
-  renderTodos();
+  renderTodos(projectList);
 };
 
 const updateCurrentProject = (id) => {
@@ -68,7 +105,7 @@ const updateCurrentProject = (id) => {
     currentProject = null;
     renderProject('No projects found');
     todoContainer.textContent = '';
-    defaultTodoDisplay('Create a new list to start adding todos!');
+    defaultTodoDisplay();
     return;
   }
 
@@ -78,7 +115,7 @@ const updateCurrentProject = (id) => {
 
   currentProject = id;
   renderProject(project.title);
-  renderTodos();
+  renderTodos(projectList);
 };
 
 const updateSideBar = (name, id) => {
@@ -109,12 +146,67 @@ const removeProject = (id) => {
   }
 };
 
+upcomingItemsBtn.addEventListener('click', () => {
+  currentProject = upcomingItemsList[0].id;
+  upcomingItemsList[0].todo = [];
+  projectList.forEach((project) => {
+    project.todo.forEach((todo) => {
+      if (!todo.checked) {
+        upcomingItemsList[0].todo.push(todo);
+      }
+    });
+  });
+  renderProject(upcomingItemsList[0].title);
+  renderTodos(upcomingItemsList);
+});
+
+pendingItemsBtn.addEventListener('click', () => {
+  currentProject = pendingItemsList[0].id;
+  pendingItemsList[0].todo = [];
+  projectList.forEach((project) => {
+    project.todo.forEach((todo) => {
+      if (!todo.checked) {
+        pendingItemsList[0].todo.push(todo);
+      }
+    });
+  });
+  renderProject(pendingItemsList[0].title);
+  renderTodos(pendingItemsList);
+});
+
+completeItemsBtn.addEventListener('click', () => {
+  currentProject = completeItemsList[0].id;
+  completeItemsList[0].todo = [];
+  projectList.forEach((project) => {
+    project.todo.forEach((todo) => {
+      if (todo.checked) {
+        completeItemsList[0].todo.push(todo);
+      }
+    });
+  });
+
+  renderProject(completeItemsList[0].title);
+  renderTodos(completeItemsList);
+});
+
+urgentItemsBtn.addEventListener('click', () => {
+  currentProject = urgentItemsList[0].id;
+  urgentItemsList[0].todo = [];
+  projectList.forEach((project) => {
+    project.todo.forEach((todo) => {
+      if (todo.isImportant) {
+        urgentItemsList[0].todo.push(todo);
+      }
+    });
+  });
+  renderProject(urgentItemsList[0].title);
+  renderTodos(urgentItemsList);
+});
+
 export {
   createProject,
   projectList,
   updateTodos,
-  updateSideBar,
-  currentProject,
-  renderTodos,
   removeTodoItem,
+  projectHeader,
 };

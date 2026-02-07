@@ -8,14 +8,17 @@ const todoModalDetails = document.querySelector('.todo-modal-container');
 const dueDate = document.querySelector('#datePicker');
 const priorityPicker = document.querySelector('#priorityPicker');
 const newModalInput = document.querySelector('#newTodoInput');
+const todoModalHeader = document.querySelector('#todoModalHeader');
 
 const modalCreateBtn = document.querySelector('#modalCreateBtn');
 const modalCloseBtn = document.querySelector('#modalCloseBtn');
 
 const resetModal = () => {
+  todoModalHeader.textContent = 'New Item';
   newModalInput.value = '';
   dueDate.value = '';
   priorityPicker.value = 'Low';
+  modalCreateBtn.textContent = 'Create';
 
   todoModal.close();
 };
@@ -58,12 +61,4 @@ modalCreateBtn.addEventListener('click', () => {
   resetModal();
 });
 
-export {
-  openModal,
-  newTodoBtn,
-  todoModal,
-  todoModalBackdrop,
-  todoModalDetails,
-  modalCreateBtn,
-  modalCloseBtn,
-};
+export { openModal, newTodoBtn };

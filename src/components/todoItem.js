@@ -72,13 +72,33 @@ const renderTodoItems = (todo) => {
   container.appendChild(card);
 };
 
-const defaultTodoDisplay = (text) => {
+const editCurrentTodo = () => {
+  console.log('foo');
+};
+
+const defaultTodoDisplay = (id) => {
   const div = document.createElement('div');
   const p = document.createElement('p');
-  p.textContent = text;
+  p.classList.add('default-display');
+  switch (id) {
+    case 0:
+      p.textContent = 'No upcoming items';
+      break;
+    case 1:
+      p.textContent = 'No pending items';
+      break;
+    case 2:
+      p.textContent = 'No complete items';
+      break;
+    case 3:
+      p.textContent = 'No urgent items';
+      break;
+    default:
+      p.textContent = 'Got an idea?';
+  }
   div.appendChild(p);
   const defaultBox = document.querySelector('.todo-container');
   defaultBox.appendChild(div);
 };
 
-export { createTodoItem, renderTodoItems, defaultTodoDisplay };
+export { createTodoItem, renderTodoItems, defaultTodoDisplay, editCurrentTodo };

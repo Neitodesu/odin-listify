@@ -41,6 +41,15 @@ const openProjectModal = () => {
     document.body.removeChild(backdrop);
   });
 
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      if (input.value === '') {
+        return;
+      }
+      createProject(input.value);
+      document.body.removeChild(backdrop);
+    }
+  });
   createButton.addEventListener('click', () => {
     if (input.value === '') {
       return;

@@ -147,6 +147,13 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
   overflow: scroll;
+
+  .default-display {
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 300;
+    color: #3f3f3f;
+  }
 }
 
 .workspace-header {

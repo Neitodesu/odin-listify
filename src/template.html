@@ -21,22 +21,22 @@
           <div class="link-container">
             <div class="fast-link">
               <img src="./assets/upcoming.png" alt="Sort upcoming items" />
-              <button>Upcoming</button>
+              <button id="upcomingItemsBtn">Upcoming</button>
             </div>
             <div class="fast-link">
               <img src="./assets/pending-icon.png" alt="Sort upcoming items" />
-              <button>Pending</button>
+              <button id="pendingItemsBtn">Pending</button>
             </div>
             <div class="fast-link">
               <img
                 src="./assets/complete-icon.png"
                 alt="Sort completed items"
               />
-              <button>Complete</button>
+              <button id="completeItemsBtn">Complete</button>
             </div>
             <div class="fast-link">
               <img src="./assets/urgent-icon.png" alt="Sort urgent items" />
-              <button>Urgent</button>
+              <button id="urgentItemsBtn">Urgent</button>
             </div>
           </div>
           <div class="lists-container">
@@ -63,7 +63,7 @@
         <div class="todo-modal-backdrop">
           <div class="todo-modal-container">
             <div class="todo-modal-top">
-              <h3>New Item</h3>
+              <h3 id="todoModalHeader">New Item</h3>
               <div class="todo-modal-input">
                 <label for="newTodoInput">
                   <img src="./assets/pen-edit.png" alt="" />
@@ -109,7 +109,7 @@
                   <img id="newTodoImg" src="./assets/item-pending.png" alt="" />
                 </div>
                 <p id="todoInputText"></p>
-                <button>Edit</button>
+                <button id="newTodoEditBtn">Edit</button>
                 <button id="newTodoRemoveBtn">Remove</button>
               </div>
               <div class="todo-bottom-row">
