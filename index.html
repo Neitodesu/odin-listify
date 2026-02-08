@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="a73cbae360e5ceb8362b.png" />
+    <title>Listify</title>
+  <script defer src="main.js"></script></head>
+  <body>
+    <main class="app-container">
+      <div class="side-bar-container" id="sideBar">
+        <div class="side-top">
+          <img
+            src="86ef173f03382a6a3626.png"
+            alt="listify logo"
+            class="main-logo"
+          />
+          <h1>Listify</h1>
+        </div>
+        <div class="side-middle">
+          <div class="link-container">
+            <div class="fast-link">
+              <img src="c6a3e0e50650a56f850e.png" alt="Sort upcoming items" />
+              <button id="upcomingItemsBtn">Upcoming</button>
+            </div>
+            <div class="fast-link">
+              <img src="c603738615855bef2aaf.png" alt="Sort upcoming items" />
+              <button id="pendingItemsBtn">Pending</button>
+            </div>
+            <div class="fast-link">
+              <img
+                src="606041ae9f026ffefab0.png"
+                alt="Sort completed items"
+              />
+              <button id="completeItemsBtn">Complete</button>
+            </div>
+            <div class="fast-link">
+              <img src="af5281e869ef8889d8ea.png" alt="Sort urgent items" />
+              <button id="urgentItemsBtn">Urgent</button>
+            </div>
+          </div>
+          <div class="lists-container">
+            <template class="side-list" id="sideListTemplate">
+              <div class="sidebar-project-card">
+                <div class="sidebar-left-container">
+                  <img
+                    id="sidebarListImg"
+                    src="3f081687d3bfb1897f85.png"
+                    alt="Todo list icon"
+                  />
+                  <button id="sideListName"></button>
+                </div>
+                <button id="sideListRemove" class="side-list-remove"></button>
+              </div>
+            </template>
+          </div>
+        </div>
+        <div class="side-bottom">
+          <button id="newProjectBtn"><span>+</span>New List</button>
+        </div>
+      </div>
+      <dialog id="newTodoModal">
+        <div class="todo-modal-backdrop">
+          <div class="todo-modal-container">
+            <div class="todo-modal-top">
+              <h3 id="todoModalHeader">New Item</h3>
+              <div class="todo-modal-input">
+                <label for="newTodoInput">
+                  <img src="c1c0b2c6ce2325b48376.png" alt="" />
+                </label>
+                <input
+                  type="text"
+                  id="newTodoInput"
+                  maxlength="40"
+                  placeholder="Todo..."
+                />
+              </div>
+            </div>
+            <div class="todo-modal-details">
+              <div class="date-details">
+                <label for="datePicker">Due Date:</label>
+                <input type="date" id="datePicker" />
+              </div>
+              <div class="priority-details">
+                <label for="priorityPicker">Priority:</label>
+                <select id="priorityPicker">
+                  <option value="Low">Low</option>
+                  <option value="Med">Med</option>
+                  <option value="High">High</option>
+                </select>
+              </div>
+            </div>
+            <div class="todo-modal-buttons">
+              <button id="modalCreateBtn">Create</button>
+              <button id="modalCloseBtn">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </dialog>
+      <div class="workspace-container" id="workspace">
+        <div class="workspace-header">
+          <h2 class="project-header"></h2>
+          <button class="mobile-menu-btn" id="mobileMenuBtn">Menu</button>
+        </div>
+        <div class="todo-container">
+          <template id="todoItemTemplate">
+            <div class="todo-item">
+              <div class="todo-top-row">
+                <div class="todo-check-icon">
+                  <img id="newTodoImg" src="01c72dc4b763d86d896d.png" alt="" />
+                </div>
+                <p id="todoInputText"></p>
+                <div class="todo-button-container">
+                  <button id="newTodoEditBtn">Edit</button>
+                  <button id="newTodoRemoveBtn">Remove</button>
+                </div>
+              </div>
+              <div class="todo-bottom-row">
+                <div class="todo-due-date">
+                  <img src="ed0c48e3b079c0fb5441.png" alt="" />
+                  <p id="todoInputDate">06/21/2026</p>
+                </div>
+                <div class="todo-priority">
+                  <img
+                    id="newTodoPriorImg"
+                    src="f1dee022bd542715732a.png"
+                    alt=""
+                  />
+                  <p id="todoInputPriority">High</p>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+        <footer>
+          <div class="add-item-btn" id="addItemBtn">
+            <button>+ Add Item</button>
+          </div>
+          <div class="credits">
+            <p>
+              Created by
+              <a
+                href="https://github.com/Neitodesu"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Neitodesu</a
+              >
+            </p>
+            <img src="d175c0c50a52be36aff9.png" alt="" />
+          </div>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>
