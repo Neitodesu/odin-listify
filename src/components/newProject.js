@@ -1,7 +1,8 @@
 import projectImg from '../assets/sidebar-list-img.png';
-import { format, parseISO, toDate, isAfter } from 'date-fns';
+import { format, parseISO, isAfter } from 'date-fns';
 import { defaultTodoDisplay, renderTodoItems } from './todoItem.js';
 import { resetModal } from './todoModal.js';
+import { closeMobileMenu } from './mobileMenu.js';
 
 const projectHeader = document.querySelector('.project-header');
 const listContainer = document.querySelector('.lists-container');
@@ -51,10 +52,16 @@ class Project {
     this.todo = todo;
   }
 }
+const generateCryptoId = () => {
+  return (
+    crypto.randomUUID?.() ??
+    Math.random().toString(36).slice(2) + Date.now().toString(36)
+  );
+};
 
 const createProject = (title) => {
   const todoArray = new Array();
-  const projectId = crypto.randomUUID();
+  const projectId = generateCryptoId();
   const newProject = new Project(title, projectId, todoArray);
   currentProject = newProject.id;
   projectList.push(newProject);
@@ -143,6 +150,7 @@ const updateSideBar = (name, id) => {
 
   card.querySelector('#sideListName').addEventListener('click', () => {
     updateCurrentProject(id);
+    closeMobileMenu();
   });
 
   card.querySelector('#sideListRemove').addEventListener('click', () => {
@@ -231,18 +239,22 @@ const sortUrgentTodos = (list) => {
 
 upcomingItemsBtn.addEventListener('click', () => {
   sortUpcomingTodos(projectList);
+  closeMobileMenu();
 });
 
 pendingItemsBtn.addEventListener('click', () => {
   sortPendingTodos(projectList);
+  closeMobileMenu();
 });
 
 completeItemsBtn.addEventListener('click', () => {
   sortCompleteTodos(projectList);
+  closeMobileMenu();
 });
 
 urgentItemsBtn.addEventListener('click', () => {
   sortUrgentTodos(projectList);
+  closeMobileMenu();
 });
 
 export {
@@ -253,4 +265,5 @@ export {
   projectHeader,
   updateTodoItem,
   updateCurrentTodoId,
+  generateCryptoId,
 };

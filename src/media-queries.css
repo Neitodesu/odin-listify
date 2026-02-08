@@ -1,0 +1,62 @@
+@media screen and (max-width: 768px) {
+  .workspace-container {
+    .workspace-header {
+      h2 {
+        font-size: 2rem;
+      }
+    }
+    .todo-item {
+      min-width: 300px;
+
+      .todo-top-row {
+        display: flex;
+        flex-direction: column;
+
+        #todoInputText {
+          text-wrap: wrap;
+        }
+
+        .todo-button-container {
+          margin-top: 1.5rem;
+        }
+      }
+    }
+
+    footer {
+      button {
+        font-size: 1.4rem;
+      }
+
+      .credits {
+        font-size: 0.8rem;
+
+        a {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .app-container {
+    display: grid;
+    grid-template-columns: auto;
+  }
+  .side-bar-container {
+    position: absolute;
+    transform: translateX(-500px);
+  }
+  .workspace-container {
+    width: 100dvw;
+  }
+
+  .workspace-header {
+    display: flex;
+    justify-content: space-between;
+
+    #mobileMenuBtn {
+      display: inline-block;
+    }
+  }
+}

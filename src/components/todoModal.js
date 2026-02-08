@@ -1,6 +1,7 @@
 import { createTodoItem } from './todoItem.js';
 import { format, parseISO } from 'date-fns';
 import { updateTodoItem } from './newProject.js';
+import { generateCryptoId } from './newProject.js';
 
 const newTodoBtn = document.querySelector('#addItemBtn');
 const todoModal = document.querySelector('#newTodoModal');
@@ -47,7 +48,7 @@ modalCreateBtn.addEventListener('click', () => {
   }
   const setDate = parseISO(dueDate.value);
   const newDate = format(setDate, 'MM/dd/yyyy');
-  const todoId = crypto.randomUUID();
+  const todoId = generateCryptoId();
   const isImportant = () => {
     if (priorityPicker.value != 'High') {
       return false;

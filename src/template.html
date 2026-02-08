@@ -71,7 +71,7 @@
                 <input
                   type="text"
                   id="newTodoInput"
-                  required
+                  maxlength="40"
                   placeholder="Todo..."
                 />
               </div>
@@ -100,6 +100,7 @@
       <div class="workspace-container" id="workspace">
         <div class="workspace-header">
           <h2 class="project-header"></h2>
+          <button class="mobile-menu-btn" id="mobileMenuBtn">Menu</button>
         </div>
         <div class="todo-container">
           <template id="todoItemTemplate">
@@ -109,8 +110,10 @@
                   <img id="newTodoImg" src="./assets/item-pending.png" alt="" />
                 </div>
                 <p id="todoInputText"></p>
-                <button id="newTodoEditBtn">Edit</button>
-                <button id="newTodoRemoveBtn">Remove</button>
+                <div class="todo-button-container">
+                  <button id="newTodoEditBtn">Edit</button>
+                  <button id="newTodoRemoveBtn">Remove</button>
+                </div>
               </div>
               <div class="todo-bottom-row">
                 <div class="todo-due-date">

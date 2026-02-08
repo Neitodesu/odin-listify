@@ -1,5 +1,7 @@
 import editIcon from '../assets/pen-edit.png';
 import { createProject } from './newProject.js';
+import { closeMobileMenu } from './mobileMenu.js';
+
 const newProjectBtn = document.querySelector('#newProjectBtn');
 const openProjectModal = () => {
   const backdrop = document.createElement('div');
@@ -55,6 +57,7 @@ const openProjectModal = () => {
       return;
     }
     createProject(input.value);
+    closeMobileMenu();
     document.body.removeChild(backdrop);
   });
 

@@ -6,6 +6,7 @@ import {
   projectList,
   projectHeader,
 } from './components/newProject.js';
+import { mobileMenuBtn, openMobileMenu } from './components/mobileMenu.js';
 
 createProject('My Project');
 
@@ -19,4 +20,7 @@ newTodoBtn.addEventListener('click', () => {
   if (projectHeader.textContent === 'Complete Items') return;
   if (projectHeader.textContent === 'Urgent Items') return;
   openModal();
+});
+mobileMenuBtn.addEventListener('click', () => {
+  openMobileMenu();
 });

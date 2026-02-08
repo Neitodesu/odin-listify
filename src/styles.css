@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Special+Gothic+Condensed+One&display=swap');
 @import './resets.css';
+@import './media-queries.css';
 
 :root {
   --ff-header: 'Special Gothic Condensed One';
@@ -161,6 +162,22 @@
   padding: 2rem;
   box-shadow: 2px 2px 1px 0px #1e2d2f66;
 
+  .mobile-menu-btn {
+    display: none;
+    background-color: #33658a;
+    padding: 0 0.5rem;
+    border: 2px solid transparent;
+    color: #fbfaf8;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 0.4rem;
+    cursor: pointer;
+
+    &:hover {
+      color: #f6ae2d;
+    }
+  }
+
   h2 {
     line-height: 1;
     font-weight: 800;
@@ -177,6 +194,7 @@
 }
 
 .todo-item {
+  min-width: 200px;
   box-shadow: 2px 2px 1px 0px #1e2d2f66;
   border-radius: 0.4rem;
   padding: 2rem;
@@ -198,7 +216,7 @@
 
   img {
     cursor: pointer;
-    width: 32px;
+    max-width: 32px;
   }
 
   P {
@@ -503,6 +521,17 @@ footer {
   }
 }
 
+.mobile-menu-backdrop {
+  position: absolute;
+  height: 100dvh;
+  width: 100dvw;
+  background-color: #1f1f1f33;
+}
+
+.menu-slide-in {
+  animation: mobileMenuSlide 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) forwards;
+}
+
 @keyframes modalSlideUp {
   from {
     opacity: 0;
@@ -522,5 +551,16 @@ footer {
   to {
     opacity: 1;
     transform: translateX(0px);
+  }
+}
+
+@keyframes mobileMenuSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
