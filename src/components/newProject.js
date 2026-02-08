@@ -15,6 +15,7 @@ const upcomingItemsBtn = document.querySelector('#upcomingItemsBtn');
 
 let currentProject;
 let currentTodo;
+const savedProjects = JSON.parse(localStorage.getItem('Projects'));
 const systemProjects = [
   'Upcoming Items',
   'Pending Items',
@@ -22,7 +23,7 @@ const systemProjects = [
   'Urgent Items',
 ];
 
-let projectList = [
+let projectList = savedProjects ?? [
   {
     title: 'Upcoming Items',
     id: 0,
@@ -52,6 +53,11 @@ class Project {
     this.todo = todo;
   }
 }
+
+const updateLocalStorage = (list) => {
+  localStorage.setItem('Projects', JSON.stringify(list));
+};
+
 const generateCryptoId = () => {
   return (
     crypto.randomUUID?.() ??
@@ -63,10 +69,9 @@ const createProject = (title) => {
   const todoArray = new Array();
   const projectId = generateCryptoId();
   const newProject = new Project(title, projectId, todoArray);
-  currentProject = newProject.id;
   projectList.push(newProject);
-  updateCurrentProject(newProject.id);
-  updateSideBar(title, newProject.id);
+  updateLocalStorage(projectList);
+  return newProject;
 };
 
 const renderProject = (title) => {
@@ -79,7 +84,7 @@ const renderTodos = (list) => {
       todoContainer.textContent = '';
 
       if (project.todo.length === 0) {
-        defaultTodoDisplay(currentProject);
+        defaultTodoDisplay(project.id);
       } else {
         project.todo.forEach((todo) => {
           renderTodoItems(todo);
@@ -95,6 +100,7 @@ const updateTodos = (obj) => {
       project.todo.push(obj);
     }
   });
+  updateLocalStorage(projectList);
   renderTodos(projectList);
 };
 
@@ -124,6 +130,7 @@ const updateTodoItem = (inputtext, date, priority) => {
   } else {
     project.todo[todoIndex].isImportant = false;
   }
+  updateLocalStorage(projectList);
   renderTodos(projectList);
   resetModal();
 };
@@ -156,6 +163,7 @@ const updateSideBar = (name, id) => {
   card.querySelector('#sideListRemove').addEventListener('click', () => {
     listContainer.removeChild(card);
     removeProject(id);
+    updateLocalStorage(projectList);
   });
 };
 
@@ -237,6 +245,28 @@ const sortUrgentTodos = (list) => {
   updateCurrentProject(urgentTodoObj.id);
 };
 
+document.addEventListener('DOMContentLoaded', () => {
+  const hasUserProject = projectList.some(
+    (project) => !systemProjects.includes(project.title),
+  );
+
+  if (!hasUserProject) {
+    createProject('My Project');
+  }
+
+  projectList.forEach((project) => {
+    if (!systemProjects.includes(project.title)) {
+      updateSideBar(project.title, project.id);
+    }
+  });
+
+  const firstUserProject = projectList.find(
+    (project) => !systemProjects.includes(project.title),
+  );
+
+  updateCurrentProject(firstUserProject?.id ?? 0);
+});
+
 upcomingItemsBtn.addEventListener('click', () => {
   sortUpcomingTodos(projectList);
   closeMobileMenu();
@@ -261,9 +291,14 @@ export {
   createProject,
   projectList,
   updateTodos,
+  renderProject,
+  renderTodos,
   removeTodoItem,
   projectHeader,
   updateTodoItem,
   updateCurrentTodoId,
+  updateCurrentProject,
   generateCryptoId,
+  updateSideBar,
+  updateLocalStorage,
 };

@@ -1,7 +1,11 @@
 import { createTodoItem } from './todoItem.js';
 import { format, parseISO } from 'date-fns';
 import { updateTodoItem } from './newProject.js';
-import { generateCryptoId } from './newProject.js';
+import {
+  generateCryptoId,
+  updateLocalStorage,
+  projectList,
+} from './newProject.js';
 
 const newTodoBtn = document.querySelector('#addItemBtn');
 const todoModal = document.querySelector('#newTodoModal');
@@ -64,6 +68,7 @@ modalCreateBtn.addEventListener('click', () => {
     isImportant(),
     todoId,
   );
+  updateLocalStorage(projectList);
   resetModal();
 });
 

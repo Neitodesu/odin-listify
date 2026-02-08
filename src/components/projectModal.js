@@ -1,5 +1,9 @@
 import editIcon from '../assets/pen-edit.png';
-import { createProject } from './newProject.js';
+import {
+  createProject,
+  updateSideBar,
+  updateCurrentProject,
+} from './newProject.js';
 import { closeMobileMenu } from './mobileMenu.js';
 
 const newProjectBtn = document.querySelector('#newProjectBtn');
@@ -42,21 +46,26 @@ const openProjectModal = () => {
   backdrop.addEventListener('click', () => {
     document.body.removeChild(backdrop);
   });
-
   input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
-      if (input.value === '') {
-        return;
-      }
-      createProject(input.value);
+      if (input.value === '') return;
+
+      const project = createProject(input.value);
+      updateSideBar(project.title, project.id);
+      updateCurrentProject(project.id);
+
+      closeMobileMenu();
       document.body.removeChild(backdrop);
     }
   });
+
   createButton.addEventListener('click', () => {
-    if (input.value === '') {
-      return;
-    }
-    createProject(input.value);
+    if (input.value === '') return;
+
+    const project = createProject(input.value);
+    updateSideBar(project.title, project.id);
+    updateCurrentProject(project.id);
+
     closeMobileMenu();
     document.body.removeChild(backdrop);
   });

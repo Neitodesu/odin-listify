@@ -8,6 +8,9 @@ import {
   removeTodoItem,
   updateCurrentTodoId,
   projectHeader,
+  projectList,
+  updateCurrentProject,
+  updateLocalStorage,
 } from './newProject.js';
 import { openEditModal } from './dom.js';
 
@@ -71,6 +74,7 @@ const renderTodoItems = (todo) => {
       : 'none';
 
     card.querySelector('#newTodoImg').src = todo.checked ? checked : unChecked;
+    updateLocalStorage(projectList);
   });
 
   card.querySelector('#newTodoRemoveBtn').addEventListener('click', () => {
