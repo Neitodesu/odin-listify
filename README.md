@@ -1,6 +1,6 @@
 # Listify
 
-[Live Link]()
+[Live Link](https://neitodesu.github.io/odin-listify/)
 
 ### <u>Tools used</u>
 
@@ -27,4 +27,3 @@
 
 ![screenshot](./src/assets/Screenshot6.png)
 ![screenshot](./src/assets/Screenshot4.png)
-
