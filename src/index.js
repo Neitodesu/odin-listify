@@ -6,12 +6,17 @@ import {
   projectList,
   projectHeader,
 } from './components/newProject.js';
-import { mobileMenuBtn, openMobileMenu } from './components/mobileMenu.js';
+import {
+  mobileMenuBtn,
+  openMobileMenu,
+  closeMobileMenu,
+} from './components/mobileMenu.js';
 
 createProject('My Project');
 
 newProjectBtn.addEventListener('click', () => {
   openProjectModal();
+  closeMobileMenu();
 });
 newTodoBtn.addEventListener('click', () => {
   if (projectList.length === 0) return;

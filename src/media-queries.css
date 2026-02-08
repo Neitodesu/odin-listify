@@ -1,24 +1,34 @@
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 650px) {
   .workspace-container {
     .workspace-header {
       h2 {
         font-size: 2rem;
       }
     }
+    .todo-container {
+      padding: 0.5rem;
+    }
     .todo-item {
-      min-width: 300px;
-
       .todo-top-row {
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
 
         #todoInputText {
-          text-wrap: wrap;
+          inline-size: 150px;
+          word-break: word;
         }
 
         .todo-button-container {
-          margin-top: 1.5rem;
+          display: flex;
+          gap: 1rem;
+          flex-direction: column;
         }
+      }
+      .todo-bottom-row {
+        display: flex;
+        justify-content: start;
+        margin: 0;
       }
     }
 
@@ -35,6 +45,16 @@
         }
       }
     }
+  }
+
+  #newTodoModal {
+    .todo-modal-container {
+      margin-bottom: 20em;
+    }
+  }
+
+  .project-modal-container {
+    margin-bottom: 20em;
   }
 }
 

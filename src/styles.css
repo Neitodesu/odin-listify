@@ -6,6 +6,12 @@
   --ff-header: 'Special Gothic Condensed One';
   --important: #f26419;
   --white: #fbfaf8;
+  --blue: #33658a;
+  --yellow: #f6ae2d;
+  --fc-dark: #1e2d2f;
+  --fc-accent: #1e2d2f99;
+  --shadow: #1e2d2f66;
+  --backdrop: #1f1f1f33;
 }
 
 .app-container {
@@ -15,7 +21,7 @@
 }
 
 .side-bar-container {
-  background-color: #33658a;
+  background-color: var(--blue);
   height: 100%;
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -73,7 +79,7 @@
         transition: all 0.06s ease-out;
 
         &:hover {
-          color: #f6ae2d;
+          color: var(--yellow);
         }
       }
     }
@@ -106,7 +112,7 @@
         transition: all 0.06s ease-out;
 
         &:hover {
-          color: #f6ae2d;
+          color: var(--yellow);
         }
       }
 
@@ -122,9 +128,9 @@
   button {
     padding-bottom: 1.5rem;
     width: 100%;
-    background-color: #33658a;
+    background-color: var(--blue);
+    color: var(--white);
     border: transparent;
-    color: var(--btn-grey);
     font-size: 1.4rem;
     font-weight: 500;
     cursor: pointer;
@@ -135,7 +141,7 @@
     transition: all 0.06s ease-out;
 
     &:hover {
-      color: #f6ae2d;
+      color: var(--yellow);
     }
 
     span {
@@ -154,27 +160,27 @@
     font-size: 1.2rem;
     font-style: italic;
     font-weight: 300;
-    color: #3f3f3f;
+    color: var(--fc-accent);
   }
 }
 
 .workspace-header {
   padding: 2rem;
-  box-shadow: 2px 2px 1px 0px #1e2d2f66;
+  box-shadow: 0px 1px 1px 0px var(--shadow);
 
   .mobile-menu-btn {
     display: none;
-    background-color: #33658a;
+    background-color: var(--blue);
     padding: 0 0.5rem;
     border: 2px solid transparent;
-    color: #fbfaf8;
+    color: var(--white);
     font-size: 1.2rem;
     font-weight: 700;
     border-radius: 0.4rem;
     cursor: pointer;
 
     &:hover {
-      color: #f6ae2d;
+      color: var(--yellow);
     }
   }
 
@@ -182,7 +188,7 @@
     line-height: 1;
     font-weight: 800;
     font-size: 3rem;
-    color: #33658a;
+    color: var(--blue);
   }
 }
 
@@ -195,13 +201,13 @@
 
 .todo-item {
   min-width: 200px;
-  box-shadow: 2px 2px 1px 0px #1e2d2f66;
+  box-shadow: 1px 1px 1px 0px var(--shadow);
   border-radius: 0.4rem;
   padding: 2rem;
   display: grid;
   grid-template-rows: auto auto;
   row-gap: 2rem;
-  color: #1e2d2f;
+  color: var(--fc-dark);
 }
 
 .slideIn {
@@ -222,7 +228,7 @@
   P {
     padding: 0.4rem;
     font-size: 1.2rem;
-    border-bottom: 1px solid #1e2d2f66;
+    border-bottom: 1px solid var(--shadow);
   }
   .complete {
     text-decoration: line-through;
@@ -230,7 +236,7 @@
   }
 
   button {
-    background-color: #33658a;
+    background-color: var(--blue);
     color: var(--white);
     font-size: 1rem;
     font-weight: 700;
@@ -241,7 +247,7 @@
     transition: all 0.06s ease-out;
 
     &:hover {
-      color: #f6ae2d;
+      color: var(--yellow);
     }
   }
 }
@@ -281,7 +287,7 @@ footer {
   justify-content: space-between;
 
   button {
-    background-color: #33658a;
+    background-color: var(--blue);
     color: var(--white);
     border: transparent;
     font-size: 1.4rem;
@@ -289,13 +295,13 @@ footer {
     cursor: pointer;
     padding: 0.4rem 1rem;
     border-radius: 0.4rem;
-    box-shadow: 2px 2px 1px 0px #1e2d2f66;
+    box-shadow: 1px 1px 1px 0px var(--shadow);
     transition: all 0.06s ease-out;
 
     &:hover {
-      color: #f6ae2d;
+      color: var(--yellow);
       transform: translate(2px, 2px);
-      box-shadow: 0px 0px 1px 0px #1e2d2f66;
+      box-shadow: 0px 0px 1px 0px var(--shadow);
     }
   }
 
@@ -305,13 +311,13 @@ footer {
     gap: 0.2rem;
 
     p {
-      color: #1e2d2f;
+      color: var(--fc-dark);
     }
 
     a {
       font-size: 1.2rem;
       font-weight: 700;
-      color: #f6ae2d;
+      color: var(--yellow);
 
       &:hover {
         opacity: 0.6;
@@ -335,7 +341,7 @@ footer {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: #1f1f1f33;
+    background-color: var(--backdrop);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -344,7 +350,7 @@ footer {
   .todo-modal-container {
     padding: 2rem;
     width: 400px;
-    background-color: #fbfaf8;
+    background-color: var(--white);
     border-radius: 0.4rem;
     text-align: center;
     animation: modalSlideUp 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) forwards;
@@ -357,8 +363,8 @@ footer {
 
       h3 {
         font-size: 2rem;
-        color: #33658a;
-        text-shadow: 1px 1px 1px #1e2d2f66;
+        color: var(--blue);
+        text-shadow: 1px 1px 1px var(--shadow);
         margin-bottom: 1rem;
       }
 
@@ -378,14 +384,14 @@ footer {
       }
 
       input {
-        color: #1e2d2f;
+        color: var(--fc-dark);
         padding: 0.4rem;
         border-radius: 0.4rem;
         border: 2px solid transparent;
 
         &:focus {
           outline: none;
-          border: 2px solid #33658a;
+          border: 2px solid var(--blue);
         }
       }
     }
@@ -396,7 +402,7 @@ footer {
       align-items: center;
       justify-content: center;
       gap: 1rem;
-      color: #1e2d2f;
+      color: var(--fc-dark);
       margin-bottom: 1rem;
 
       #datePicker {
@@ -406,27 +412,27 @@ footer {
 
         &:focus {
           outline: none;
-          border: 2px solid #33658a;
+          border: 2px solid var(--blue);
         }
       }
 
       select {
-        background-color: #fbfaf8;
+        background-color: var(--white);
         border: 2px solid transparent;
         border-radius: 0.4rem;
         padding: 0.5rem;
         font-size: 1rem;
         font-weight: 500;
-        color: #3f3f3f;
+        color: var(--fc-dark);
 
         &:focus {
-          border: 2px solid #33658a;
+          border: 2px solid var(--blue);
         }
       }
     }
 
     .todo-modal-buttons button {
-      background-color: #33658a;
+      background-color: var(--blue);
       color: var(--white);
       font-size: 1.2rem;
       font-weight: 700;
@@ -437,7 +443,7 @@ footer {
       transition: all 0.05s ease-out;
 
       &:hover {
-        color: #f6ae2d;
+        color: var(--yellow);
       }
     }
   }
@@ -450,7 +456,7 @@ footer {
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: #1f1f1f33;
+  background-color: var(--backdrop);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -458,7 +464,7 @@ footer {
   .project-modal-container {
     padding: 2rem;
     width: 400px;
-    background-color: #fbfaf8;
+    background-color: var(--white);
     border-radius: 0.4rem;
     text-align: center;
     animation: modalSlideUp 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) forwards;
@@ -467,7 +473,7 @@ footer {
       font-size: 2rem;
       color: #33658a;
       margin-bottom: 1rem;
-      text-shadow: 1px 1px 1px #1e2d2f66;
+      text-shadow: 1px 1px 1px var(--shadow);
     }
 
     .project-modal-top-row {
@@ -479,14 +485,14 @@ footer {
 
       input {
         position: relative;
-        color: #1e2d2f;
+        color: var(--fc-dark);
         padding: 0.4rem;
         border-radius: 0.4rem;
         border: 2px solid transparent;
 
         &:focus {
           outline: none;
-          border: 2px solid #33658a;
+          border: 2px solid var(--blue);
         }
       }
       img {
@@ -503,7 +509,7 @@ footer {
       gap: 0.5rem;
 
       button {
-        background-color: #33658a;
+        background-color: var(--blue);
         color: var(--white);
         font-size: 1.2rem;
         font-weight: 700;
@@ -514,7 +520,7 @@ footer {
         transition: all 0.05s ease-out;
 
         &:hover {
-          color: #f6ae2d;
+          color: var(--yellow);
         }
       }
     }
@@ -525,7 +531,7 @@ footer {
   position: absolute;
   height: 100dvh;
   width: 100dvw;
-  background-color: #1f1f1f33;
+  background-color: var(--backdrop);
 }
 
 .menu-slide-in {

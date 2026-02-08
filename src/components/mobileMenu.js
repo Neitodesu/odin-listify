@@ -8,7 +8,6 @@ let isOpen = false;
 function openMobileMenu() {
   workspace.appendChild(div);
   isOpen = !isOpen;
-  console.log('Hello');
   if (!isOpen) {
     sideBar.classList.remove('menu-slide-in');
   }

@@ -180,7 +180,7 @@ const sortUpcomingTodos = (list) => {
 
   getSourceProjects(list).forEach((project) => {
     project.todo.forEach((todo) => {
-      if (isAfter(todo.date, today)) {
+      if (isAfter(todo.date, today) && !todo.checked) {
         upcomingTodoObj.todo.push(todo);
       }
     });
