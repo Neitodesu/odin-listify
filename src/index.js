@@ -13,20 +13,10 @@ newProjectBtn.addEventListener('click', () => {
   openProjectModal();
 });
 newTodoBtn.addEventListener('click', () => {
-  if (projectList.length === 0) {
-    return;
-  }
-  if (projectHeader.textContent === 'Upcoming Items') {
-    return;
-  }
-  if (projectHeader.textContent === 'Pending Items') {
-    return;
-  }
-  if (projectHeader.textContent === 'Complete Items') {
-    return;
-  }
-  if (projectHeader.textContent === 'Urgent Items') {
-    return;
-  }
+  if (projectList.length === 0) return;
+  if (projectHeader.textContent === 'Upcoming Items') return;
+  if (projectHeader.textContent === 'Pending Items') return;
+  if (projectHeader.textContent === 'Complete Items') return;
+  if (projectHeader.textContent === 'Urgent Items') return;
   openModal();
 });

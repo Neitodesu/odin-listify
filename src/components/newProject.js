@@ -1,5 +1,5 @@
 import projectImg from '../assets/sidebar-list-img.png';
-import { format, parseISO } from 'date-fns';
+import { format, parseISO, toDate, isAfter } from 'date-fns';
 import { defaultTodoDisplay, renderTodoItems } from './todoItem.js';
 import { resetModal } from './todoModal.js';
 
@@ -12,35 +12,31 @@ const urgentItemsBtn = document.querySelector('#urgentItemsBtn');
 const pendingItemsBtn = document.querySelector('#pendingItemsBtn');
 const upcomingItemsBtn = document.querySelector('#upcomingItemsBtn');
 
-let projectList = [];
 let currentProject;
 let currentTodo;
+const systemProjects = [
+  'Upcoming Items',
+  'Pending Items',
+  'Complete Items',
+  'Urgent Items',
+];
 
-let upcomingItemsList = [
+let projectList = [
   {
     title: 'Upcoming Items',
     id: 0,
     todo: [],
   },
-];
-
-let pendingItemsList = [
   {
     title: 'Pending Items',
     id: 1,
     todo: [],
   },
-];
-
-let completeItemsList = [
   {
     title: 'Complete Items',
     id: 2,
     todo: [],
   },
-];
-
-let urgentItemsList = [
   {
     title: 'Urgent Items',
     id: 3,
@@ -109,6 +105,7 @@ const updateCurrentTodoId = (id) => {
 
 const updateTodoItem = (inputtext, date, priority) => {
   const project = projectList.find((project) => project.id === currentProject);
+  if (!project) return;
   const todoIndex = project.todo.findIndex((todo) => todo.id === currentTodo);
 
   project.todo[todoIndex].text = inputtext;
@@ -125,14 +122,6 @@ const updateTodoItem = (inputtext, date, priority) => {
 };
 
 const updateCurrentProject = (id) => {
-  if (!id) {
-    currentProject = null;
-    renderProject('No projects found');
-    todoContainer.textContent = '';
-    defaultTodoDisplay();
-    return;
-  }
-
   const project = projectList.find((project) => project.id === id);
 
   if (!project) return;
@@ -170,61 +159,90 @@ const removeProject = (id) => {
   }
 };
 
-upcomingItemsBtn.addEventListener('click', () => {
-  currentProject = upcomingItemsList[0].id;
-  upcomingItemsList[0].todo = [];
-  projectList.forEach((project) => {
+const getSourceProjects = (list) => {
+  return list.filter((project) => !systemProjects.includes(project.title));
+};
+
+const sortUpcomingTodos = (list) => {
+  const today = new Date();
+  const upcomingTodoObj = list.find(
+    (project) => project.title === 'Upcoming Items',
+  );
+  upcomingTodoObj.todo = [];
+
+  getSourceProjects(list).forEach((project) => {
     project.todo.forEach((todo) => {
-      if (!todo.checked) {
-        upcomingItemsList[0].todo.push(todo);
+      if (isAfter(todo.date, today)) {
+        upcomingTodoObj.todo.push(todo);
       }
     });
   });
-  renderProject(upcomingItemsList[0].title);
-  renderTodos(upcomingItemsList);
+  updateCurrentProject(upcomingTodoObj.id);
+};
+
+const sortPendingTodos = (list) => {
+  const pendingTodoObj = list.find(
+    (project) => project.title === 'Pending Items',
+  );
+  pendingTodoObj.todo = [];
+
+  getSourceProjects(list).forEach((project) => {
+    project.todo.forEach((todo) => {
+      if (!todo.checked) {
+        pendingTodoObj.todo.push(todo);
+      }
+    });
+  });
+  updateCurrentProject(pendingTodoObj.id);
+};
+
+const sortCompleteTodos = (list) => {
+  const completeTodoObj = list.find(
+    (project) => project.title === 'Complete Items',
+  );
+  completeTodoObj.todo = [];
+
+  getSourceProjects(list).forEach((project) => {
+    project.todo.forEach((todo) => {
+      if (todo.checked) {
+        completeTodoObj.todo.push(todo);
+      }
+    });
+  });
+  updateCurrentProject(completeTodoObj.id);
+};
+
+const sortUrgentTodos = (list) => {
+  const urgentTodoObj = list.find(
+    (project) => project.title === 'Urgent Items',
+  );
+  currentProject = urgentTodoObj.id;
+  urgentTodoObj.todo = [];
+
+  getSourceProjects(list).forEach((project) => {
+    project.todo.forEach((todo) => {
+      if (todo.isImportant) {
+        urgentTodoObj.todo.push(todo);
+      }
+    });
+  });
+  updateCurrentProject(urgentTodoObj.id);
+};
+
+upcomingItemsBtn.addEventListener('click', () => {
+  sortUpcomingTodos(projectList);
 });
 
 pendingItemsBtn.addEventListener('click', () => {
-  currentProject = pendingItemsList[0].id;
-  pendingItemsList[0].todo = [];
-  projectList.forEach((project) => {
-    project.todo.forEach((todo) => {
-      if (!todo.checked) {
-        pendingItemsList[0].todo.push(todo);
-      }
-    });
-  });
-  renderProject(pendingItemsList[0].title);
-  renderTodos(pendingItemsList);
+  sortPendingTodos(projectList);
 });
 
 completeItemsBtn.addEventListener('click', () => {
-  currentProject = completeItemsList[0].id;
-  completeItemsList[0].todo = [];
-  projectList.forEach((project) => {
-    project.todo.forEach((todo) => {
-      if (todo.checked) {
-        completeItemsList[0].todo.push(todo);
-      }
-    });
-  });
-
-  renderProject(completeItemsList[0].title);
-  renderTodos(completeItemsList);
+  sortCompleteTodos(projectList);
 });
 
 urgentItemsBtn.addEventListener('click', () => {
-  currentProject = urgentItemsList[0].id;
-  urgentItemsList[0].todo = [];
-  projectList.forEach((project) => {
-    project.todo.forEach((todo) => {
-      if (todo.isImportant) {
-        urgentItemsList[0].todo.push(todo);
-      }
-    });
-  });
-  renderProject(urgentItemsList[0].title);
-  renderTodos(urgentItemsList);
+  sortUrgentTodos(projectList);
 });
 
 export {

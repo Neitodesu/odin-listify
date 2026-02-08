@@ -7,6 +7,7 @@ import {
   updateTodos,
   removeTodoItem,
   updateCurrentTodoId,
+  projectHeader,
 } from './newProject.js';
 import { openEditModal } from './dom.js';
 
@@ -73,6 +74,10 @@ const renderTodoItems = (todo) => {
   });
 
   card.querySelector('#newTodoRemoveBtn').addEventListener('click', () => {
+    if (projectHeader.textContent === 'Upcoming Items') return;
+    if (projectHeader.textContent === 'Pending Items') return;
+    if (projectHeader.textContent === 'Complete Items') return;
+    if (projectHeader.textContent === 'Urgent Items') return;
     removeTodoItem(todo);
   });
 
